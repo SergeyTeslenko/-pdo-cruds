@@ -1,10 +1,9 @@
 <?php
-$pdo = new PDO("mysql:host=localhost; dbname=tutorial", "root", "");
-$statement = $pdo->prepare("SELECT * FROM crud WHERE id=:id");
-$statement->bindParam(":id", $_GET['id']);
-$statement->execute();
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+require 'database/QueryBuilder.php';
 
+$QueryBuilder = new  QueryBuilder();
+
+$user = $QueryBuilder->show();
 ?>
 <!doctype html>
 <html lang="en">

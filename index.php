@@ -1,10 +1,8 @@
 <?php
-$pdo = new PDO("mysql:host=localhost; dbname=tutorial", "root", "");
+require 'database/QueryBuilder.php';
+$QueryBuilder = new QueryBuilder();
 
-$statement = $pdo->prepare("SELECT * FROM crud");
-$statement->execute();
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+$users = $QueryBuilder->all();
 ?>
 
 

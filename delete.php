@@ -1,12 +1,10 @@
 <?php
+require 'database/QueryBuilder.php';
 $id = $_GET['id'];
+$QueryBuilder = new QueryBuilder();
 
-$pdo = new PDO("mysql:host=localhost; dbname=tutorial", "root", "");
+$QueryBuilder->delete($id);
 
-$sql = "DELETE FROM crud WHERE id=:id";
-$statement = $pdo->prepare($sql);
-$statement->bindParam(":id",$id);
-$statement->execute();
 
 
 header("location: /");

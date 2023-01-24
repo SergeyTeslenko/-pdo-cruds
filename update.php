@@ -1,4 +1,6 @@
 <?php
+require 'database/QueryBuilder.php';
+$Querybuilder = new QueryBuilder();
 
 $data = [
     "id" => $_GET['id'],
@@ -8,12 +10,8 @@ $data = [
     "gender" => $_POST['gender'],
 ];
 
-$pdo = new PDO("mysql:host=localhost; dbname=tutorial", "root", "");
 
-$sql = "UPDATE crud SET first_name=:first_name, last_name=:last_name, email=:email, gender=:gender WHERE id=:id";
-$statement = $pdo->prepare($sql);
-$statement->execute($data);
-
+$Querybuilder ->update("crud", $data);
 
 header("location: /");
 

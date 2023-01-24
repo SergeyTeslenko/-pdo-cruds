@@ -1,9 +1,9 @@
 <?php
-$pdo = new PDO("mysql:host=localhost; dbname=tutorial", "root", "");
-$statement = $pdo->prepare("SELECT * FROM crud WHERE id=:id");
-$statement->bindParam(":id", $_GET['id']);
-$statement->execute();
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+require 'database/QueryBuilder.php';
+$QueryBuilder = new QueryBuilder();
+
+$user = $QueryBuilder->edit();
+
 
 ?>
 <!doctype html>
@@ -44,11 +44,13 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
                 <label for=""> Email:</label>
                 <input type="text" name="email" class="form-control" value="<?= $user['email'] ?> ">
             </div>
+
             <div class="form-group mb-4">
                 <label> Gender:</label>
 
-                <input type="radio" class="form-check-input" name="gender" id="male" value=<?php echo $user['gender'] ?>">
-                 <label for="male" class="form-input-label"> Male</label>
+                <input type="radio" class="form-check-input" name="gender" id="male" value="<?php echo $user['gender'] ?>">
+                <label for="male" class="form-input-label"> Male</label>
+
                 <input type="radio" name="gender" class="form - check - input" id="female" value="<?php echo $user['gender'] ?>">
                 <label for="female" class="form-input-label"> Female</label>
 
